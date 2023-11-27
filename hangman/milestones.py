@@ -20,11 +20,11 @@ def check_guess(guess, word):
                 print(f"Sorry, '{guess.string}' is not in the word: {word}. Try again.")
     return hit
 
-def ask_for_input(wordlist=word_list):
+def ask_for_input(fruits=word_list):
     # Iteratively check if the input is a valid guess.
     hit = False
     while (hit == False):
-        word = random.choice(wordlist)
+        word = random.choice(fruits)
         guess = input("Enter a single letter:")
         hit = check_guess(guess, word)
 
