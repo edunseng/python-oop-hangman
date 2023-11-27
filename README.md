@@ -35,14 +35,23 @@ Table of Contents, if the README file is long
 Check out the site live at:  [![lterm](https://img.shields.io/badge/webiste-live-brightgreen.svg?style=flat-square)](https://sr6033.github.io/lterm/)	[![Gitter](https://badges.gitter.im/gitterHQ/gitter.svg)](https://gitter.im/lterm/Lobby?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
 -->
 <h2 id="description">Description</h2>
-Our implementation of Hangman is part of the AICore excersise to practice object oriented programming concepts in python. We have developed the following functions ....
-
-...  
-We use the "random" python library to select a random word from a list of words.  
+Our implementation of Hangman is part of the AICore excersise to practice object oriented programming concepts in python. At first we create a list of fruits, which will be randomly picked by the computer. 
 <p align="center">
 
- ![Alt text](./hangman/pics/list.png)
+ ![word list](./hangman/pics/list.png)
 </p>
+
+We then develop two functions to run the neccessary checks. The fist function (ask_for_input) will ask the user to guess a character, then call the second function (check_guess) to check if the character is contained in the random word. This process is repeated in a loop until a hit is guessed.
+<p align="center">
+
+> ![Check Functions](./hangman/pics/check_functions.svg) 
+<p id="check_functions">
+
+> **Figure 1.** Flow chart representation of ask_for_input() and check_guess() functions. (Diagram was generated using: https://app.diagrams.net)
+</ul>
+</p>
+
+We use the "random" python library to select a random word from a list of words.  
 
  briefly outline the problem or the use-case that it addresses, or if it's a data project, describe the question you were trying to solve and outline how your project achieves it.
 What was your motivation? Why did you build this project?
