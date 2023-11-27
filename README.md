@@ -22,7 +22,7 @@ Table of Contents, if the README file is long
 
  
  
- ![Alt text](hangman.gif)
+ ![Alt text](./hangman/pics/hangman.gif)
 <div align="center">
 <a href="#description"> Description</a> •
 <a href="#installation"> Installation</a> •
@@ -34,7 +34,24 @@ Table of Contents, if the README file is long
 <!-- 
 Check out the site live at:  [![lterm](https://img.shields.io/badge/webiste-live-brightgreen.svg?style=flat-square)](https://sr6033.github.io/lterm/)	[![Gitter](https://badges.gitter.im/gitterHQ/gitter.svg)](https://gitter.im/lterm/Lobby?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
 -->
-<h2>Description</h2>
+<h2 id="description">Description</h2>
+Our implementation of Hangman is part of the AICore excersise to practice object oriented programming concepts in python. We have developed the following functions ....
+
+...  
+We use the "random" python library to select a random word from a list of words.  
+<p align="center">
+
+ ![Alt text](./hangman/pics/list.png)
+</p>
+
+ briefly outline the problem or the use-case that it addresses, or if it's a data project, describe the question you were trying to solve and outline how your project achieves it.
+What was your motivation? Why did you build this project?
+Here's a checklist of items to include in your description. Not all projects will need all of them, but you should at least ask yourself whether each one applies:
+ 1 ) What problem does it solve?
+ 2 ) Why did you make the decisions you made in creating your solution?
+ 3 ) What did you learn?
+ 4 ) What makes your project stand out?
+ 5 ) If your project has a lot of different features, consider adding a "Features" section and listing them here
 <h2 id="installation">Installation</h2>
 - If a **command** doesn't need further steps:
 
