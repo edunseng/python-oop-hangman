@@ -49,12 +49,12 @@ Our approach involved dividing the game implementation into four parts. First, w
 
 |Milestone | Description|
 :----------|:-----------|
-`Select a word`| Select a random word from list of words
-`Guess a letter`|Ask the user for input and verify it.
-`Perform checks`| Check if the guess is in the word and decide what happens, if it's a hit or a miss. How does it affect the players remaining lives and the unique letters in the word. 
-`Build the gameflow` | Decide when the game is won or lost. Also decide How to hide the word and reveal hits. Finally how to report the current status and draw the stick figure.
+`Choose a word.`| Choose a word at random from the provided list of words.
+`Attempt to guess a letter`|Prompt the user for input and validate it.
+`Conduct necessary checks`| Determine the outcome by checking if the guess is correct or incorrect, and adjust the player's remaining lives accordingly. Additionally, update the count of unique letters in the word. 
+`Develop the gameflow` | Establish the conditions for winning or losing the game. Implement a strategy to conceal the word and unveil successful guesses. Lastly, provide a report on the current progress and display the stick figure.
 
-#### Milestone 1.  Select a word
+#### Milestone 1.  Choose a word.
 ---
 To randomly select a word, we created a list of words and used Python's random library to choose a word from the list. Alternatively, the list of words can be read from a file.
 >
@@ -70,7 +70,7 @@ To randomly select a word, we created a list of words and used Python's random l
 > ![random_word2](./hangman/pics/list2.png)
 > </p>
 >
-#### Milestone 2.   Guess a letter
+#### Milestone 2.  Attempt to guess a letter.
 ---
 To ask the user for input, we created a function that verifies if the input is a single alphabetical character. We also ensured that the character is in the correct format (string, lowercase) for further processing.
 > 
@@ -84,7 +84,7 @@ To ask the user for input, we created a function that verifies if the input is a
 >
 > **Figure 1.** Flow chart represents the ask_for_input() function. A while-loop checks the length and alphabetical format of the user's input. Exiting the loop converts the letter into a lower case string. (Diagram was generated using: https://app.diagrams.net)
 
-#### Milestone 3. Perform checks
+#### Milestone 3. Conduct necessary checks.
 ---
 We developed functions to check the user's guess. The input from the user is checked to determine if it is present in the word and if it has been guessed correctly before. Based on the result, the function updates the list of correct and wrong guesses and adjusts the number of remaining lives and unique letters accordingly.
 > ```Check the user input```
@@ -95,7 +95,7 @@ We developed functions to check the user's guess. The input from the user is che
 > **Figure 2.** Flow chart representation of the check_guess() function: Correct guesses are added to the correct_guesses list, while wrong guesses are added to the wrong_guesses list. The num_lives and num_letters variables are reduced by 1 for a miss or a hit, respectively. (Diagram was generated using: https://app.diagrams.net)
 > </ul>
 > </p>
-#### Milestone 4. Build the gameflow
+#### Milestone 4. Develop the gameflow.
 ---
 To hide the word and gradually reveal correct guesses, we created a function that replaces the letters in the word with either correct guesses or underscore characters. Additionally, we implemented functions to determine when the game is won or lost, display the current game status, and draw the stick figure based on the number of wrong guesses.
 > ```Hide the word```
