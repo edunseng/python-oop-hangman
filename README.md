@@ -150,7 +150,7 @@ All the functions are collected in the Hangman class, which takes the randomly s
 >
 <h2 id="file-structure">Project Files Description</h2>
 
-<p>This project includes two executable files:</p>
+<p>This project includes three executable files:</p>
 <ul>
   <li><b>milestones.py</b> - This file contains the main development process where the milestones were achieved. It includes the completed Hangman class and the production code.</li>
   <li><b>hangman_Template.py</b> - This file uses a template code defined by the AICore team to create the final production code.</li>
