@@ -97,16 +97,12 @@ class Hangman:
    
     # Iteratively check if the input is a valid guess.
     def ask_for_input(self):
-        hit = False
-        while (hit == False) or not (self.hangman_game_over()):
+        game_over = False
+        while (game_over == False):
             self.print_game_status()
-            if self.hangman_looser():
-                print("\nSorry, but you have lost.")
-                print ("The word was " + self.word)
-                print ("\nGoodbye!\n")
-                quit()
             guess = input("\nEnter a single letter:")
-            hit = self.check_guess(guess)
+            self.check_guess(guess) 
+            game_over = self.hangman_game_over()           
 
     def check_guess(self, letter):
         # Convert the guess into lower case.
@@ -135,7 +131,6 @@ class Hangman:
                     self.wrong_guesses.append(letter)
                     self.num_lives = self.num_lives - 1
                     time.sleep(1.5)
-        return hit 
     
     def hide_word(self):
         self.hidden_word = str()  
@@ -148,31 +143,39 @@ class Hangman:
     
     def hangman_winner(self):
         if "_" not in self.hide_word():
+            print("\033c", end='') #clear output
+            print("\n>>>>>>>>Congratulations!<<<<<<<<<<")
+            print("You have won the game!!") 
             return True
         return False
     
     def hangman_looser(self):
         if self.num_lives == 0:
+            print("\033c", end='') #clear output
+            print("\nSorry, but you have lost.")
+            print ("The word was " + self.word)
+            print ("\nGoodbye!\n")
             return True
         return False
     
     def hangman_game_over(self):
+        if self.hangman_looser():
+            self.hangman_looser()
+        if self.hangman_winner():
+            self.hangman_winner()
         return self.hangman_winner() or self.hangman_looser()
                         
     def print_game_status(self):
         print("\033c", end='') #clear output
         print(status[len(self.wrong_guesses)])
-        print ('Word: ' + self.hide_word())
-        print ("Letters to guess: "+str(self.num_letters))
-        print ('Lives: '+ str((self.num_lives )))
+        print ('Mistery Word: ' + self.hide_word())
+        print(f'Characters: ({self.num_letters})')
+        print (f"Lives: ({self.num_lives})")
         print()
-        print ('Missed Letters: ',end=" ")
-        for self.letter in self.wrong_guesses:
-            print (self.letter, end=" ")
-        print()
-        print('Hits: ', end=" ")
-        for self.letter in self.correct_guesses:
-            print (self.letter, end=" ")
+        print(f'Hits ({len(self.correct_guesses)}/{len(set(self.word))}):', end=" ")
+        print ([hit for hit in self.correct_guesses])
+        print (f"Misses:", end=" ")
+        print ([miss for miss in self.wrong_guesses])
 
 def random_word():
     word_list = ["apple", "banana", "cherry", "mango", "strawberry"]
@@ -181,11 +184,8 @@ def random_word():
 def main():       
     game = Hangman(random_word())
     game.ask_for_input()
-    if game.hangman_winner():
-        print("\n Congratulations! You have won!!") 
-        print ("The word was " + game.word)
-        print ("\nGoodbye!\n")
-        quit()
+    game.hangman_game_over()
+    pass
 
 if __name__ == "__main__":
     main()    
