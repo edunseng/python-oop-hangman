@@ -1,16 +1,4 @@
 # Hangman
-Hangman is a classic game in which a player thinks of a word and the other player tries to guess that word within a certain amount of attempts.
-
-This is an implementation of the Hangman game, where the computer thinks of a word and the user tries to guess it. 
-
-<!Project Title
-Table of Contents, if the README file is long
-- A description of the project: what it does, the aim of the project, and what you learned
-- Installation instructions
-- Usage instructions
-- File structure of the project
-- License information>
-
       __      __         __         __      __     _________    __          __          __         __      __ 
      |  |    |  |      /    \      |   \   |  |  /  ________|  |   \      /   |       /    \      |   \   |  | 
      |  |____|  |     /  /\  \     |    \  |  | |  |_________  |    \    /    |      /  /\  \     |    \  |  |
@@ -19,175 +7,171 @@ Table of Contents, if the README file is long
      |  |    |  |  /  /      \  \  |  | \     | \  |______|  | |  | \    / |  |   /  /      \  \  |  | \     |
      |__|    |__| /__/        \__\ |__|  \____|  \___________| |__|  \__/  |__|  /__/        \__\ |__|  \____|
 
-
- 
- 
  ![Alt text](./hangman/pics/hangman.gif)
-<div align="center">
-<a href="#description"> Description</a> •
-<a href="#installation"> Installation</a> •
-<a href="#getting-started"> Getting Started</a> •
-<a href="#file-structure"> File structure</a> •
-<a href="#license"> License</a>
-</div>
-</Br>
-<!-- 
-Check out the site live at:  [![lterm](https://img.shields.io/badge/webiste-live-brightgreen.svg?style=flat-square)](https://sr6033.github.io/lterm/)	[![Gitter](https://badges.gitter.im/gitterHQ/gitter.svg)](https://gitter.im/lterm/Lobby?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
--->
+**Table of Contents** 
+
+  - [Description](#description)
+      - [The Game](#the-game)
+      - [Our Version](#our-version)
+      - [Why Hangman ?](#why-hangman-)
+  - [Implementation](#implementation)
+      - [Milestone 1.  Select a word](#milestone-1--select-a-word)
+      - [Milestone 2.   Guess a letter](#milestone-2---guess-a-letter)
+      - [Milestone 3. Perform checks](#milestone-3-perform-checks)
+      - [Milestone 4. Build the gameflow](#milestone-4-build-the-gameflow)
+    - [Putting everything together into the Hangman class](#putting-everything-together-into-the-hangman-class)
+  - [Project Files Description](#project-files-description)
+      - [Executable Files](#executable-files)
+      - [Directories](#directories)
+  - [Game Play](#game-play)
+      - [How to play Hangman](#how-to-play-hangman)
+  - [License](#license)
+
 <h2 id="description">Description</h2>
-Our implementation of Hangman is part of the AICore excersise to practice object oriented programming concepts in python. At first we create a list of fruits, which will be randomly picked by the computer. 
-<p align="center">
+Hangman is a classic game in which a player thinks of a word and the other player tries to guess that word within a certain amount of attempts.
 
- ![word list](./hangman/pics/list.png)
-</p>
+This is an implementation of the Hangman game, where the computer thinks of a word and the user tries to guess it.
 
-We then develop two functions to run the neccessary checks. The fist function (ask_for_input) will ask the user to guess a character, then call the second function (check_guess) to check if the character is contained in the random word. This process is repeated in a loop until a hit is guessed.
-<p align="center">
+#### The Game
+Hangman is a word guessing game that can be played by two or more players. One player thinks of a word, phrase, or sentence and the other players try to guess it by suggesting letters within a certain number of guesses. The game is typically played with a paper and pencil, where a stick figure is drawn for each wrong guess. The game ends when the players correctly guess the word or the stick figure is completely drawn.
+#### Our Version
+We have implemented a version of the Hangman game where the computer randomly selects a word from a list and displays it as a hidden word using underscore characters '_'. The computer also provides information about the number of unique letters in the word, a list of correct and wrong attempts, and the number of attempts left.
 
-> ![Check Functions](./hangman/pics/check_functions.svg) 
-<p id="check_functions">
+For each wrong guess, a part of the stick figure is drawn until the game ends either when the user guesses the word correctly or the stick figure is completely drawn.
 
-> **Figure 1.** Flow chart representation of ask_for_input() and check_guess() functions. (Diagram was generated using: https://app.diagrams.net)
-</ul>
-</p>
+#### Why Hangman ?
+Playing the Hangman game is a great way to practice object-oriented programming concepts in Python. It helps in understanding how to use classes effectively and provides hands-on experience in implementing production code for the class. We have documented every step of the development process with detailed explanations, flowcharts, and code examples to enhance understanding.
 
-We use the "random" python library to select a random word from a list of words.  
+<h2 id="implementation">Implementation</h2>
 
- briefly outline the problem or the use-case that it addresses, or if it's a data project, describe the question you were trying to solve and outline how your project achieves it.
-What was your motivation? Why did you build this project?
-Here's a checklist of items to include in your description. Not all projects will need all of them, but you should at least ask yourself whether each one applies:
- 1 ) What problem does it solve?
- 2 ) Why did you make the decisions you made in creating your solution?
- 3 ) What did you learn?
- 4 ) What makes your project stand out?
- 5 ) If your project has a lot of different features, consider adding a "Features" section and listing them here
-<h2 id="installation">Installation</h2>
-- If a **command** doesn't need further steps:
+Our approach involved dividing the game implementation into four parts. First, we identified important milestones in the game flow that needed to be implemented. Then, we wrote separate functions to achieve these milestones. After completing the functions, we refactored the code to improve readability and comprehension. Finally, we collected all the functions into the Hangman class and wrote the production code.
+### Milestones 
 
-```
-// without argument
-ls: function() {
-        this.echo('This is the ls command\n');
-}
-```
+|Milestone | Description|
+:----------|:-----------|
+`Select a word`| Select a random word from list of words
+`Guess a letter`|Ask the user for input and verify it.
+`Perform checks`| Check if the guess is in the word and decide what happens, if it's a hit or a miss. How does it affect the players remaining lives and the unique letters in the word. 
+`Build the gameflow` | Decide when the game is won or lost. Also decide How to hide the word and reveal hits. Finally how to report the current status and draw the stick figure.
 
-```
-// with argument
-echo: function(arg1) {
-        this.echo('This is the echo command' + arg1 + '\n');
-}
-```
+#### Milestone 1.  Select a word
+---
+To randomly select a word, we created a list of words and used Python's random library to choose a word from the list. Alternatively, the list of words can be read from a file.
+>
+>  ```list of words (Version 1)```:
+> <p align="center">
+>
+> ![random_word](./hangman/pics/list.png)
+> </p>
+> 
+> ```list of words (Version 2)```:
+> <p align="center">
+>
+> ![random_word2](./hangman/pics/list2.png)
+> </p>
+>
+#### Milestone 2.   Guess a letter
+---
+To ask the user for input, we created a function that verifies if the input is a single alphabetical character. We also ensured that the character is in the correct format (string, lowercase) for further processing.
+> 
+> ```Ask for user input```:
+> <div>
+> <p align="right">
+> 
+>![ask_for_input](./hangman/pics/ask_for_input.svg)
+> </p>
+> </div>
+>
+> **Figure 1.** Flow chart represents the ask_for_input() function. A while-loop checks the length and alphabetical format of the user's input. Exiting the loop converts the letter into a lower case string. (Diagram was generated using: https://app.diagrams.net)
 
-- If a **command** needs further steps:
+#### Milestone 3. Perform checks
+---
+We developed functions to check the user's guess. The input from the user is checked to determine if it is present in the word and if it has been guessed correctly before. Based on the result, the function updates the list of correct and wrong guesses and adjusts the number of remaining lives and unique letters accordingly.
+> ```Check the user input```
+> <p align="center">
+>
+> ![check_guess](./hangman/pics/check_guess.svg) 
+>
+> **Figure 2.** Flow chart representation of the check_guess() function: Correct guesses are added to the correct_guesses list, while wrong guesses are added to the wrong_guesses list. The num_lives and num_letters variables are reduced by 1 for a miss or a hit, respectively. (Diagram was generated using: https://app.diagrams.net)
+> </ul>
+> </p>
+#### Milestone 4. Build the gameflow
+---
+To hide the word and gradually reveal correct guesses, we created a function that replaces the letters in the word with either correct guesses or underscore characters. Additionally, we implemented functions to determine when the game is won or lost, display the current game status, and draw the stick figure based on the number of wrong guesses.
+> ```Hide the word```
+> <p align="center">
+>
+> ![hide_word](./hangman/pics/hide_word.svg) 
+>
+> **Figure 3.** Shows the flow chart representation of the hide_word() function. A for-loop is used to reveal correct words and replace the remaining letters with '_' characters. (Diagram was generated using: https://app.diagrams.net)
 
-```
-cd: function(arg1) {
-	this.push(function(cmd, term) {
-                if(cmd == 'another_command')
-                    this.echo('another_command');
-		}, {
-                    prompt: '[[b;#44D544;]lterm@localhost/' + arg1 + ':~$] ',
-                   }
-        );
-}
-```
+The reamining game flow must correctly end the game and draw the stick figure in case of a miss.The game is won when the hidden word is revealed and lost when the player has used up all life. To achieve this, we wrote four functions.
 
+- **print_game_status()**: Function clears the screen and displays information about the correct and wrong guesses so far, the remaining lives, and the remaining letters to guess. The correct stick figure state index is selected from a list of six states, which is created as a global variable called 'status'.
+> ```Print current game status```
+> <p align="center">
+>
+> ![status_list](./hangman/pics/status.png) 
+>
 
-<p>This Project includes 3 executable files, 3 text files as well as 2 directories as follows:</p>
-<h4>Executable Files:</h4>
-<ul>
-  <!--<li><b>spam_detector.py</b> - Includes all functions required for classification operations.</li>
-  <li><b>train.py</b> - Uses the functions defined in the spam_detector.py file and generates the model.txt file after execution.</li>
-  <li><b>test.py</b> - Uses the functions defined in the spam_detector.py file and, after execution, generates the result.txt as well as evaluation.txt files.</li>
-  -->
+> ```Stick states as list ```
+> <p align="center">
+>
+> ![status_sticks](./hangman/pics/status_sticks.png) 
+>
+>
 
-  Command| Does...
-:-----:|:-----:
-`echo`|To display a string
-`pwd`|Shows you the present working directory
-`ls`|Lists all the files
-`cd`|To change directory - change the current working 
-</ul>
+-  **hangman_winner()**: Function returns 'True' if the hidden_word does not contain any underscore characters.
+- **hangman_looser():**: Function returns 'True' when the player has used all of their lives (num_lives == 0).
+- **hangman_game_over()**: Function returns 'True' if either hangman_winner() or hangman_looser() is true; otherwise, it returns 'False'. This allows the game flow to loop until this function becomes 'True'.
+> ```Game Over```
+> <p align="center">
+>
+> ![hangman_game_over](./hangman/pics/game_over.svg) 
+>
+> **Figure 5.** Illustrates the flow chart representation of hangman_game_over(), hangman_winner(), and hangman_looser(). The game is over when either of these functions returns 'True'. The game is lost if num_lives == 0 and won if the hidden_word variable contains no more '_' characters. (Diagram was generated using: https://app.diagrams.net)
 
-<h4>Output Files:</h4>
-<ul>
-  <li><b>model.txt</b> - Contains information about the vocabularies of the train set, such as the frequency and conditional probability of each word in Spam and Ham classes.</li>
-  <li><b>result.txt</b> - Contains information about the classified emails of the test set.</li>
-  <li><b>evaluation.txt</b> - Contains evaluation results table as well as Confusion Matrix of Spam and Ham classes.</li>
-</ul>
-
+### Putting everything together into the Hangman class
+---
+All the functions are collected in the Hangman class, which takes the randomly selected word as input.
+> ```Hangman class```
+> <p align="center">
+>
+> ![hungman_class](./hangman/pics/hangman_class.svg) 
+>
 <h2 id="file-structure">Project Files Description</h2>
 
-<h4>Source Directories:</h4>
+<p>This project includes two executable files:</p>
 <ul>
-  <li><b>train directory</b> - Includes all emails for the training phase of the program.</li>
-  <li><b>test directory</b> - Includes all emails for the testing phase of the program.</li>
+  <li><b>milestones.py</b> - This file contains the main development process where the milestones were achieved. It includes the completed Hangman class and the production code.</li>
+  <li><b>hangman_Template.py</b> - This file uses the code defined in milestones.py to create the final execution class.</li>
 </ul>
 
-<h2> List of commands available presently</h2>
-<!-- 
-Command| Does...
-:-----:|:-----:
-`echo`|To display a string
-`pwd`|Shows you the present working directory
-`ls`|Lists all the files
-`cd`|To change directory - change the current working directory to a specific directory
-`cd ..`|Moves you up one directory(parent)
-`cat`|Concatenate and print the content of files
-`clear`|Clears the terminal screen
-`touch`|Changes file timestamps or creates a new file
-`cp`/`mv`|To copy/move files
-`rm`|Delets a file/directory
-`uname`|Shows the name of the Linux/Unix system you are using
-`date`|Shows the local standard date & time
-`ifconfig`|Shows information about active network interfaces.
-`mkdir`|Creates a new directory
-`tty`|Prints the file name of the terminal connected to standard input
-`history`|Shows all the commands which are used in the previous iterations
--->
-### List of commands that can be added
+<ul>
+The project also includes a "pics" directory that contains figures used in this document.
+</ul>
 
-- `export`
-- `less`
-- `more`
+<h2 id="gameplay">Game Play</h2>
 
-<h2 id="getting-started">Getting Started</h2>
+> ```start: python hangman.py```
+> <p align="center">
+>
+> ![gameplay](./hangman/pics/gameplay.gif) 
+>
+#### To play Hangman
+1. Start the game by typing python hangman.py into the console.
+2. You will see the ">>>>>>>>HANGMAN<<<<<<<<<<" banner at the start of the game.
+3.  Note the "word: _ _ _ _ _" underneath the hangman stick figure. This represents the word to be guessed. 
+4. The "Letters to guess" section indicates how many letters you must guess to win the game.
+5. To make a guess, enter a single alphabetical letter after the prompt "Enter a single letter:".
+6. Each attempt will either reveal correct letters or deduct one life, causing the stick figure to progress.
+7. You can track your misses and hits under the "Missed Letters" and "Hits" sections.
+ 
+
+Good Luck!
 
 
-1. Fork it (<https://github.com/sr6033/lterm/fork>)
-2. Create your feature branch (`git checkout -b feature/fooBar`)
-3. Commit your changes (`git commit -am 'Add some fooBar'`)
-4. Push to the branch (`git push origin feature/fooBar`)
-5. Create a new Pull Request
-
-#### To add your new commands
-- edit the file **<a href="https://github.com/sr6033/lterm/blob/master/js/main.js">main.js</a>** to add your commands.
-- You don't have to worry about any other files or programs.
 
 <h2 id="license">License</h2>
 
-- On addition of a new **command**, increase the size of `arr` array. This array acts like a counter to check if a **task/command** is completed or not.
-- You need to add the new **command** into the second array `arr2` . This array stores all the commands and helps in fetching the **completed commands** when the **history** command is executed.
-- Please make sure that you **do not alter the positions of commands** in `arr2`, You need to add the new command towards the last.
-- Example: If I add the command - `echo`. I will add another 0 to the end of `arr`. Then I will make `arr[index] = 1` under `echo` command.
-```
-var arr = [0,0,0,0,0,0,0,0,0,0,0,0,0,0]; // Will add another 0 here. The place where you added is the index.
-var arr2 = ['list of all other commands']; // Will add the 'echo' command here
-...
-...
-echo: function(arg1) {
-            arr[index_where_you_added_0] = 1;	// Will make the value at that index to 1. 	
-            this.echo(arg1 + '\n');
-            this.echo('> The [[b;#ff3300;]echo] command prints back your arguments.');
-            this.echo('> Type [[b;#ff3300;]help] and check your first task is completed.');
-            this.echo('> Now type [[b;#ff3300;]pwd] to continue.');
-},
-
-```
-- If you face any problem or cannot understand anything, open up an **issue**.
-- You can also edit the **readme** and make it more user friendly to help out new contributors.
-
-> **NOTE: Kindly keep the display of the terminal intact while making an update. A single extra space can make the look of the emulator little odd. So keep that in mind while printing something using `echo` command.**
-
-> Note: Kindly have interpretable & good commit messages. Don't assume me to be some **Jedi** with powers to be able to make out every commit with a single word as message.
-*May the Force be with you.*
+This is an open, unlicensed repository. You are free to utilize the content of this repository for any purpose you desire. Please maintain a professional tone and refrain from including any additional text before or after. 
